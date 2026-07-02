@@ -65,7 +65,7 @@ erDiagram
     }
 
     CUSTOMER_PROFILES {
-        INT customer_id PK FK
+        INT customer_id PK
         VARCHAR full_name
         VARCHAR phone
         VARCHAR gender
@@ -79,7 +79,7 @@ erDiagram
 
     MOVIES {
         INT movie_id PK
-        INT genre_id FK
+        INT genre_id
         VARCHAR title
         VARCHAR movie_age_rating
         NUMERIC movie_rating
@@ -94,29 +94,29 @@ erDiagram
 
     HALLS {
         INT hall_id PK
-        INT cinema_id FK
+        INT cinema_id
         INT hall_number
         INT capacity
     }
 
     SESSIONS {
         INT session_id PK
-        INT movie_id FK
-        INT hall_id FK
+        INT movie_id
+        INT hall_id
         TIMESTAMP session_time
         NUMERIC price
     }
 
     TICKETS {
         INT ticket_id PK
-        INT customer_id FK
-        INT session_id FK
+        INT customer_id
+        INT session_id
         INT quantity
     }
 
     PAYMENTS {
         INT payment_id PK
-        INT ticket_id FK
+        INT ticket_id
         NUMERIC amount
         VARCHAR payment_method
         VARCHAR payment_status
@@ -131,40 +131,40 @@ erDiagram
     }
 
     TICKET_DISCOUNTS {
-        INT ticket_id FK
-        INT discount_id FK
+        INT ticket_id
+        INT discount_id
     }
 
     REVIEWS {
         INT review_id PK
-        INT customer_id FK
-        INT movie_id FK
+        INT customer_id
+        INT movie_id
         NUMERIC rating
         TEXT review_text
         TIMESTAMP created_at
     }
 
-    CUSTOMERS ||--|| CUSTOMER_PROFILES : "has profile"
+    CUSTOMERS ||--|| CUSTOMER_PROFILES : has
 
-    GENRES ||--o{ MOVIES : "contains"
+    GENRES ||--o{ MOVIES : contains
 
-    CINEMAS ||--o{ HALLS : "contains"
+    CINEMAS ||--o{ HALLS : contains
 
-    MOVIES ||--o{ SESSIONS : "has"
+    MOVIES ||--o{ SESSIONS : has
 
-    HALLS ||--o{ SESSIONS : "hosts"
+    HALLS ||--o{ SESSIONS : hosts
 
-    CUSTOMERS ||--o{ TICKETS : "purchases"
+    CUSTOMERS ||--o{ TICKETS : purchases
 
-    SESSIONS ||--o{ TICKETS : "includes"
+    SESSIONS ||--o{ TICKETS : includes
 
-    TICKETS ||--|| PAYMENTS : "payment"
+    TICKETS ||--|| PAYMENTS : payment
 
-    TICKETS ||--o{ TICKET_DISCOUNTS : "has"
+    TICKETS ||--o{ TICKET_DISCOUNTS : has
 
-    DISCOUNTS ||--o{ TICKET_DISCOUNTS : "applies to"
+    DISCOUNTS ||--o{ TICKET_DISCOUNTS : applies
 
-    CUSTOMERS ||--o{ REVIEWS : "writes"
+    CUSTOMERS ||--o{ REVIEWS : writes
 
-    MOVIES ||--o{ REVIEWS : "receives"
+    MOVIES ||--o{ REVIEWS : receives
 ```
